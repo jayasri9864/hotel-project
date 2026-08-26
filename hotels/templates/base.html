@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}The Verandah — Hotel & Restaurant{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="{% url 'home' %}" class="brand">
+      <span class="brand-mark">◠</span> The Verandah
+    </a>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+      <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+      <li><a href="{% url 'menu' %}" class="{% if request.resolver_match.url_name == 'menu' or request.resolver_match.url_name == 'food_detail' %}active{% endif %}">Restaurant</a></li>
+      <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<div style="display:none">{% csrf_token %}</div>
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>The Verandah</h4>
+        <p style="max-width: 34ch; font-size:0.9rem;">A quiet courtyard hotel and restaurant, built around long verandahs, brass light, and unhurried meals.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About the Hotel</a></li>
+          <li><a href="{% url 'menu' %}">Restaurant Menu</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach Us</h4>
+        <ul>
+          <li>📍 12 Marina Loop, Chennai</li>
+          <li>📞 +91 98765 43210</li>
+          <li>✉️ stay@theverandah.demo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; {% now "Y" %} The Verandah — Demo project built with Django. All dishes, prices and bookings are for demonstration only.
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="{% static 'js/script.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}Restaurant Menu — The Verandah{% endblock %} 
+ 
+{% block content %} 
+ 
+<section style="padding-bottom: 0;"> 
+  <div class="container section-head"> 
+    <div class="section-eyebrow">Restaurant</div> 
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);">Our Menu</h1> 
+    <p>Tap <strong>Order Placed</strong> to place a demo order right from the menu, or <strong>View Details</strong> to see the full dish description first.</p> 
+  </div> 
+</section> 
+ 
+<section style="padding-top: 24px;"> 
+  <div class="container"> 
+ 
+    <div class="filter-bar"> 
+      <button class="filter-pill active" onclick="filterMenu('all', this)">All Dishes</button> 
+      {% for value, label in categories %} 
+        <button class="filter-pill" onclick="filterMenu('{{ value }}', this)">{{ label }}</button> 
+      {% endfor %} 
+    </div> 
+ 
+    <div class="menu-grid"> 
+      {% for item in items %} 
+      <div class="card" data-category="{{ item.category }}"> 
+        <div class="card-visual"> 
+          <span class="tag">{{ item.get_category_display }}</span> 
+          {% if item.is_chef_special %}<span class="chef-badge">Chef's Special</span>{% endif %} 
+          
+          <!-- Dish Image Added -->
+          <img src="{% static 'images/parrota.jpg' %}"
+               alt="{{ item.name }}" 
+               class="dish-image">
+          
+          {{ item.emoji }} 
+        </div> 
+        <div class="card-body"> 
+          <h3>{{ item.name }}</h3> 
+          <p>{{ item.short_description }}</p> 
+          <div class="card-footer"> 
+            <span class="price-tag">₹{{ item.price }}</span> 
+            <span style="font-size:0.8rem; color:#7c847c;">⏱ {{ item.prep_time_minutes }} min</span> 
+          </div> 
+          <div class="card-actions"> 
+            <button class="btn btn-brass" id="order-btn-{{ item.pk }}" 
+              onclick="placeOrder({{ item.pk }}, this, 'order-status-{{ item.pk }}')"> 
+              Order Placed 
+            </button> 
+            <a href="{% url 'food_detail' item.pk %}" class="btn btn-pine">View Details</a> 
+          </div> 
+          <div class="order-status" id="order-status-{{ item.pk }}"></div> 
+        </div> 
+      </div> 
+      {% empty %} 
+      <p>No dishes available right now — please check back soon.</p> 
+      {% endfor %} 
+    </div> 
+ 
+  </div> 
+</section> 
+ 
+{% endblock %}

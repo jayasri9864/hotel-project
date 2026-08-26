@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}About — The Verandah{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+  <div class="container" style="text-align:center; max-width:720px;">
+    <div class="section-eyebrow">Our Story</div>
+    <h1 style="font-size:clamp(1.9rem,4vw,2.6rem);">A hotel built around its verandah, not its lobby</h1>
+    <p style="color:#565f56;">The Verandah opened in 2010 in a renovated courtyard house. We kept the arches, the tiled floors, and the idea that a hotel should feel like a long, unhurried visit to a friend's home — not a transaction.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container grid-2">
+    <div>
+      <h2>What makes us different</h2>
+      <ul class="value-list">
+        <li>
+          <span class="icon">🏡</span>
+          <div>
+            <strong>18 rooms, no more</strong>
+            <p style="margin:4px 0 0; color:#565f56; font-size:0.92rem;">We stayed small on purpose, so every guest is known by name by their second morning.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🍲</span>
+          <div>
+            <strong>A kitchen, not a buffet</strong>
+            <p style="margin:4px 0 0; color:#565f56; font-size:0.92rem;">Every dish on our menu is cooked to order — see our full restaurant menu for what's on today.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🌿</span>
+          <div>
+            <strong>Courtyard-first design</strong>
+            <p style="margin:4px 0 0; color:#565f56; font-size:0.92rem;">Rooms wrap around a shared garden courtyard instead of facing a car park or corridor.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🤝</span>
+          <div>
+            <strong>Local, always</strong>
+            <p style="margin:4px 0 0; color:#565f56; font-size:0.92rem;">Staff, produce, and craftsmanship are sourced from within the city wherever possible.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="amenity-arch">🕊️</div>
+  </div>
+</section>
+
+<section style="background: var(--linen-deep);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Amenities</div>
+      <h2>Everything included in your stay</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-visual">📶</div>
+        <div class="card-body"><h3>Free Wi-Fi</h3><p>High-speed internet across rooms, courtyard, and the restaurant.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-visual">🚗</div>
+        <div class="card-body"><h3>Valet Parking</h3><p>Complimentary valet for guests arriving by car, day or night.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-visual">🧺</div>
+        <div class="card-body"><h3>Same-day Laundry</h3><p>Drop off by 10am, get it back pressed and folded by evening.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-visual">🍳</div>
+        <div class="card-body"><h3>Breakfast Included</h3><p>A rotating South Indian and continental breakfast spread daily.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-visual">🧘</div>
+        <div class="card-body"><h3>Morning Yoga</h3><p>Optional courtyard yoga sessions, 6:30am, open to all guests.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-visual">🚲</div>
+        <div class="card-body"><h3>Bicycle Rentals</h3><p>Borrow a bicycle to explore the neighbourhood at your own pace.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="text-align:center;">
+  <div class="container">
+    <h2>Hungry already?</h2>
+    <p style="max-width:52ch; margin:0 auto 26px; color:#565f56;">Take a look at what's cooking in our restaurant today.</p>
+    <a href="{% url 'menu' %}" class="btn btn-pine">Explore the Menu</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}The Verandah — A Courtyard Hotel & Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-eyebrow">Chennai · Est. 2010</div>
+      <h1>Stay slow. Eat well. <br>Rest under the arches.</h1>
+      <p class="lead">The Verandah pairs quiet courtyard rooms with a kitchen that cooks the way the coast has always cooked — unhurried, generous, and a little smoky.</p>
+      <div class="hero-cta">
+        <a href="{% url 'menu' %}" class="btn btn-brass">View Restaurant Menu</a>
+        <a href="{% url 'about' %}" class="btn btn-outline">About the Hotel</a>
+      </div>
+    </div>
+    <div class="hero-arch">
+      <span class="glyph">🏛️</span>
+    </div>
+  </div>
+  <div class="container hero-stats">
+    <div class="hero-stat"><div class="num">18</div><div class="label">Courtyard Rooms</div></div>
+    <div class="hero-stat"><div class="num">4.8★</div><div class="label">Guest Rating</div></div>
+    <div class="hero-stat"><div class="num">30+</div><div class="label">Menu Dishes</div></div>
+    <div class="hero-stat"><div class="num">24/7</div><div class="label">Front Desk</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Why stay here</div>
+      <h2>Everything a traveller actually needs</h2>
+      <p>No clutter, no upsells — just a comfortable room, a good table, and people who remember your name by day two.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-visual"><span class="tag">Rooms</span>🛏️</div>
+        <div class="card-body">
+          <h3>Courtyard Rooms</h3>
+          <p>Airy rooms opening onto a shared verandah, with cross-ventilation and warm brass lighting.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-visual"><span class="tag">Dining</span>🍽️</div>
+        <div class="card-body">
+          <h3>All-Day Restaurant</h3>
+          <p>Coastal and Chettinad plates, fresh filter coffee, and a menu that changes with the catch of the day.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-visual"><span class="tag">Unwind</span>🌿</div>
+        <div class="card-body">
+          <h3>Garden Courtyard</h3>
+          <p>A shaded inner courtyard for evening reading, quiet calls, or a slow cup of filter coffee.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if specials %}
+<section style="background: var(--linen-deep);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">From the kitchen</div>
+      <h2>Chef's Specials this week</h2>
+      <p>A short preview — see the full restaurant menu for everything on offer.</p>
+    </div>
+    <div class="grid-3">
+      {% for item in specials %}
+      <div class="card">
+        <div class="card-visual">
+          <span class="tag">{{ item.get_category_display }}</span>
+          {{ item.emoji }}
+        </div>
+        <div class="card-body">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.short_description }}</p>
+          <div class="card-footer">
+            <span class="price-tag">₹{{ item.price }}</span>
+            <a href="{% url 'food_detail' item.pk %}" class="btn btn-pine">View Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <div class="container" style="text-align:center;">
+    <h2>Ready to book your table or your room?</h2>
+    <p style="max-width:52ch; margin: 0 auto 28px; color:#565f56;">This is a demo build — use the contact page to send a test enquiry.</p>
+    <a href="{% url 'contact' %}" class="btn btn-brass">Get in Touch</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }} — The Verandah{% endblock %}
+
+{% block content %}
+
+<section>
+  <div class="container">
+    <a href="{% url 'menu' %}" class="back-link">← Back to Menu</a>
+
+    <div class="detail-wrap">
+      <div>
+        <div class="detail-visual">{{ item.emoji }}</div>
+      </div>
+
+      <div>
+        <div class="section-eyebrow">{{ item.get_category_display }}{% if item.is_chef_special %} · Chef's Special{% endif %}</div>
+        <h1 style="font-size:clamp(1.8rem,3.6vw,2.4rem);">{{ item.name }}</h1>
+        <p style="color:#565f56; font-size:1.02rem;">{{ item.full_description }}</p>
+
+        <div class="detail-meta">
+          <div class="meta-item"><strong>₹{{ item.price }}</strong>Price</div>
+          <div class="meta-item"><strong>{{ item.prep_time_minutes }} min</strong>Prep Time</div>
+          <div class="meta-item"><strong>{{ item.get_spice_level_display }}</strong>Spice Level</div>
+        </div>
+
+        <div class="detail-order-box">
+          <h3 style="margin-bottom:6px;">Ready to order?</h3>
+          <p style="color:#565f56; font-size:0.92rem; margin-bottom:16px;">This places a demo order — delivery status below updates automatically.</p>
+
+          <button class="btn btn-brass btn-block" id="order-btn-detail-{{ item.pk }}"
+            onclick="placeOrder({{ item.pk }}, this, 'order-status-detail-{{ item.pk }}')">
+            Order Placed
+          </button>
+
+          <div class="order-status" id="order-status-detail-{{ item.pk }}"></div>
+
+          <div class="order-tracker" data-tracker-for="order-status-detail-{{ item.pk }}">
+            <div class="step">Order Placed</div>
+            <div class="step">Preparing</div>
+            <div class="step">Delivered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--linen-deep); padding-bottom: 60px;">
+  <div class="container" style="text-align:center;">
+    <h2 style="font-size:1.5rem;">Looking for something else?</h2>
+    <p style="color:#565f56; margin-bottom: 22px;">Browse the rest of today's menu.</p>
+    <a href="{% url 'menu' %}" class="btn btn-pine">Back to Full Menu</a>
+  </div>
+</section>
+
+{% endblock %}
