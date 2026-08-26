@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-mmzwe!23pky0q=l7cc#kty5fxi7m07&l$_p5y-hf+$0x@6fs*t
 DEBUG = True
 
 ALLOWED_HOSTS = [hotel-project-wvxy.onrender.com"]
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://hotel-project-wvxy.onrender.com",
+]
 
 # Application definition
 
